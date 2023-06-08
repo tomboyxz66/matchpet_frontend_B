@@ -3,6 +3,7 @@ import 'package:app/pages/app/test_content.dart';
 import 'package:app/pages/home_page.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/pages/screen/chat_list/chat_page.dart';
+import 'package:app/pages/screen/chat_list/select_chat_page.dart';
 import 'package:app/pages/screen/matching_screen.dart';
 import 'package:app/pages/screen/register.dart';
 import 'package:get/get.dart';
@@ -34,6 +35,12 @@ appRoutes() => [
       GetPage(
         name: '/chatscreens',
         page: () => ChatScreens(),
+        transition: Transition.leftToRightWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: '/selectChatPage',
+        page: () => SelectChatPage(),
         transition: Transition.leftToRightWithFade,
         transitionDuration: const Duration(milliseconds: 500),
       ),

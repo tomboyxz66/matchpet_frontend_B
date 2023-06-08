@@ -1,7 +1,7 @@
 import 'package:app/controller/home_controller.dart';
 import 'package:app/pages/screen/addmatch.dart';
 import 'package:app/pages/screen/chat_list/chat_page.dart';
-import 'package:app/pages/screen/chat_list/chatmessage%20.dart';
+import 'package:app/pages/screen/chat_list/select_chat_page.dart';
 import 'package:app/pages/screen/mypet_screen.dart';
 import 'package:app/pages/screen/profile.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> screens = [
     MyPetScreen(),
     AddMatch(),
-    ChatScreens(),
+    SelectChatPage(),
     Profile(),
   ];
   @override

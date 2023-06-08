@@ -8,13 +8,14 @@ class FriendsAcceptedController extends GetxController {
   var isLoading = false.obs;
   var friendsAcceptedData = FriendsAcceptedModel().obs;
 
-  myfriendsAccepted(int user_id) async {
+  myfriendsAccepted(int userId, int petId) async {
     try {
       isLoading.value = true;
       final response = await dio.post(
         "${MyDomain().api}/api/getAcceptedFriends",
         data: {
-          'user_id': user_id,
+          'user_id': userId,
+          'pet_id': petId,
         },
       );
       if (response.statusCode == 200) {
