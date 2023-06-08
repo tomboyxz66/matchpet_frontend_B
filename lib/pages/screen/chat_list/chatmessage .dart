@@ -20,21 +20,21 @@ class _ChatmessageState extends State<Chatmessage> {
       Get.put(GetMessengsModelController());
 
   var userId = GetStorage().read('userId');
+  var friendId = GetStorage().read('friendId');
   // var receiverId = GetStorage().read('receiverId');
 
   ScrollController _scrollController = ScrollController();
   TextEditingController _textEditingController = TextEditingController();
 
   void initState() {
-    _getMessengsController.getMsgAPI(18 as int, userId as int);
+    _getMessengsController.getMsgAPI(friendId as int, userId as int);
     super.initState();
   }
 
   void sendMessage(String message) {
     setState(() {
-      _sendMessengsController.sendMsgAPI(userId, 18, message);
-
-      _getMessengsController.getMsgAPI(18 as int, userId as int);
+      _sendMessengsController.sendMsgAPI(userId, friendId, message);
+      _getMessengsController.getMsgAPI(friendId as int, userId as int);
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: Duration(milliseconds: 300),
@@ -48,9 +48,9 @@ class _ChatmessageState extends State<Chatmessage> {
 
   @override
   Widget build(BuildContext context) {
-    Timer.periodic(Duration(seconds: 2), (timer) {
-      _getMessengsController.getMsgAPI(18 as int, userId as int);
-    });
+    // Timer.periodic(Duration(seconds: 5), (timer) {
+    //   _getMessengsController.getMsgAPI(friendId as int, userId as int);
+    // });
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -59,40 +59,40 @@ class _ChatmessageState extends State<Chatmessage> {
       ),
       body: Obx(
         () => !_getMessengsController.load.value &&
-                _getMessengsController.getMsgData.value.message != null
+                _getMessengsController.getMsgData.value.data != null
             ? Column(
                 children: [
                   Expanded(
                     child: ListView.builder(
                       controller: _scrollController,
-                      itemCount: _getMessengsController
-                          .getMsgData.value.message!.length,
+                      itemCount:
+                          _getMessengsController.getMsgData.value.data!.length,
                       itemBuilder: (BuildContext context, int index) {
                         final msg = _getMessengsController
-                            .getMsgData.value.message![index];
+                            .getMsgData.value.data![index];
 
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ListTile(
-                            leading: msg != userId
+                            leading: msg.receiverId != userId
                                 ? Container(
                                     width: 0,
                                   )
                                 : CircleAvatar(),
                             // title: Text(message.sender_id),
                             subtitle: Row(
-                              mainAxisAlignment: msg != userId
+                              mainAxisAlignment: msg.receiverId != userId
                                   ? MainAxisAlignment.end
                                   : MainAxisAlignment.start,
                               children: [
                                 Card(
-                                    color: msg != userId
+                                    color: msg.receiverId != userId
                                         ? Colors.pink
                                         : Colors.blue,
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        msg,
+                                        msg.message.toString(),
                                         style: (TextStyle(color: Colors.white)),
                                       ),
                                     )),
@@ -120,7 +120,7 @@ class _ChatmessageState extends State<Chatmessage> {
                           onPressed: () {
                             String message = _textEditingController.text.trim();
                             if (message.isNotEmpty) {
-                              // sendMessage(message);
+                              sendMessage(message);
                             }
                           },
                         ),

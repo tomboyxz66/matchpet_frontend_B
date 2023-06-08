@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:app/controller/register_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -15,8 +20,9 @@ class _RegisterState extends State<Register> {
   String species = "Cat";
   String gender = "Female";
   int age = 5;
-  @override
+  // @override
   String? choosType, lastName, user, passWord, tel;
+  final ImagePicker _imagePicker = ImagePicker();
 
   String itemDog = 'Pomeranian';
   List<String> dogList = [
@@ -78,6 +84,7 @@ class _RegisterState extends State<Register> {
     'Male',
     'Female',
   ];
+  final RegisterController _registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -412,12 +419,20 @@ class _RegisterState extends State<Register> {
           const SizedBox(height: 20.0),
           Column(
             children: [
+              IconButton(
+                  onPressed: _registerController.selectImage,
+                  icon: Icon(Icons.add_photo_alternate)),
               Container(
                 width: 150.0,
-                child: Image.asset('asset/images/logopet.jpg'),
+                child: Obx(
+                  () => _registerController.imagePath.value.isEmpty
+                      ? Image.asset('asset/images/logopet.jpg')
+                      : Image.file(
+                          File(_registerController.imagePath.value),
+                          height: 150,
+                        ),
+                ),
               ),
-              IconButton(
-                  onPressed: () {}, icon: Icon(Icons.add_photo_alternate)),
             ],
           ),
           const SizedBox(height: 20.0),

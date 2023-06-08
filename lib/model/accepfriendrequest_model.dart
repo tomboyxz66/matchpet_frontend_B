@@ -31,9 +31,9 @@ class Data {
   int? userId;
   String? username;
   String? email;
-  Null? firstName;
-  Null? lastName;
-  Null? location;
+  String? firstName;
+  String? lastName;
+  String? location;
   int? petId;
   String? petName;
   String? species;

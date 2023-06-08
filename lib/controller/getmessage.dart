@@ -17,7 +17,7 @@ class GetMessengsModelController extends GetxController {
       });
       if (response.statusCode == 200) {
         getMsgData.value = GetMessengsModel.fromJson(response.data);
-        print(getMsgData.value.message);
+        print(getMsgData.value.data);
       }
       print(response.statusCode);
       load.value = false;

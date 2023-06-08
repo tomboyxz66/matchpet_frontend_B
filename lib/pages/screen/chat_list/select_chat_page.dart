@@ -12,6 +12,7 @@ class SelectChatPage extends StatefulWidget {
 
 class _SelectChatPageState extends State<SelectChatPage> {
   final PetController _petController = Get.put(PetController());
+
   var userId = GetStorage().read("userId");
 
   @override
@@ -23,148 +24,53 @@ class _SelectChatPageState extends State<SelectChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Mypet'),
-        automaticallyImplyLeading: true,
-      ),
-      body: Obx(
-        () => !_petController.isLoading.value &&
-                _petController.petData.value.data != null
-            ? Center(
-                child: ListView.builder(
-                  itemCount: _petController.petData.value.data!.length,
-                  itemBuilder: (context, index) {
-                    var value = _petController.petData.value.data;
-                    return InkWell(
-                      onTap: () {
-                        GetStorage().write("species", value[index].species);
-                        GetStorage().write("petName", value[index].name);
-                        GetStorage().write("petId", value[index].petId);
-                        GetStorage().write("genderPet", value[index].gender);
-                        Get.toNamed("/chatscreens");
-                      },
-                      child: Card(
-                          color: Colors.red[100],
-                          elevation: 3.0,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 16, horizontal: 16),
-                            height: 200,
-                            width: 300,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Container(
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                          color: Colors.grey[300],
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                          child: Image.asset(
-                                            'asset/images/logopet.jpg',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.only(top: 8),
-                                          width: 150,
-                                          color: Colors.black54,
-                                          height: 2,
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text('NAME : ${value![index].name}'),
-                                        Text('AGE : ${value[index].age}'),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 20),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Column(
-                                    //   crossAxisAlignment:
-                                    //       CrossAxisAlignment.start,
-                                    //   children: [
-                                    //     Text(
-                                    //       'John Doe',
-                                    //       style: TextStyle(
-                                    //         fontSize: 16,
-                                    //         fontWeight: FontWeight.bold,
-                                    //       ),
-                                    //     ),
-                                    //     SizedBox(height: 4),
-                                    //     Text('JohnDee'),
-                                    //   ],
-                                    // ),
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          value[index].gender!.toUpperCase() ==
-                                                  "MALE"
-                                              ? 'asset/images/male.png'
-                                              : 'asset/images/female.png',
-                                          height: 20,
-                                          width: 20,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                            value[index].gender!.toUpperCase()),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 32),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          '${value[index].species}',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text('${value[index].species}'),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Mypet'),
+          automaticallyImplyLeading: true,
+        ),
+        body: Container(
+          child: Obx(() => !_petController.isLoading.value &&
+                  _petController.petData.value.data != null
+              ? SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                    itemCount: _petController.petData.value.data!.length,
+                    itemBuilder: (context, index) {
+                      var result = _petController.petData.value.data![index];
+                      return Card(
+                        color: Colors.red[100],
+                        elevation: 3.0,
+                        child: ListTile(
+                          leading: ClipOval(
+                            child: Image.asset(
+                              'asset/images/logopet.jpg',
+                              fit: BoxFit.cover,
                             ),
-                          )),
-                    );
-                  },
-                ),
-              )
-            : const Center(
-                child: CircularProgressIndicator(),
-              ),
-      ),
-    );
+                          ),
+                          title: Text('${result.name}'),
+                          subtitle: Text('${result.species}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.message_outlined),
+                                color: Colors.pink,
+                                onPressed: () {
+                                  GetStorage().write('petId', result.petId);
+                                  Get.toNamed('/chatscreens');
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                )),
+        ));
   }
 }
