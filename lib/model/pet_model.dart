@@ -28,25 +28,31 @@ class Data {
   int? petId;
   String? name;
   String? species;
+  String? breed;
   String? gender;
   int? age;
   int? ownerId;
+  String? petImage;
 
   Data(
       {this.petId,
       this.name,
       this.species,
+      this.breed,
       this.gender,
       this.age,
-      this.ownerId});
+      this.ownerId,
+      this.petImage});
 
   Data.fromJson(Map<String, dynamic> json) {
     petId = json['pet_id'];
     name = json['name'];
     species = json['species'];
+    breed = json['breed'];
     gender = json['gender'];
     age = json['age'];
     ownerId = json['owner_id'];
+    petImage = json['pet_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,9 +60,11 @@ class Data {
     data['pet_id'] = this.petId;
     data['name'] = this.name;
     data['species'] = this.species;
+    data['breed'] = this.breed;
     data['gender'] = this.gender;
     data['age'] = this.age;
     data['owner_id'] = this.ownerId;
+    data['pet_image'] = this.petImage;
     return data;
   }
 }

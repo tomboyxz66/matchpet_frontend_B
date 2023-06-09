@@ -1,3 +1,4 @@
+import 'package:app/controller/pet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,7 +14,16 @@ class _ProfileState extends State<Profile> {
   var firstName = GetStorage().read("name");
   var lastName = GetStorage().read("lastname");
   var Pet = GetStorage().read("Pet");
+  final PetController _petController = Get.put(PetController());
+  var userId = GetStorage().read("userId");
   String? choosType, email, tel;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _petController.myPetList(userId as int);
+    super.initState();
+  }
 
   String itemGender = 'Male';
   List<String> genderList = [
@@ -50,10 +60,10 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Profile'),
+        title: const Text('Profile'),
         automaticallyImplyLeading: false,
       ),
-      body: ListView(padding: EdgeInsets.all(30.0), children: [
+      body: ListView(padding: const EdgeInsets.all(30.0), children: [
         Column(
           children: [
             Container(
@@ -79,7 +89,7 @@ class _ProfileState extends State<Profile> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.edit_outlined),
+                              icon: const Icon(Icons.edit_outlined),
                               color: Colors.blue,
                               onPressed: () {
                                 showModalBottomSheet(
@@ -89,9 +99,10 @@ class _ProfileState extends State<Profile> {
                                       return ListView(
                                         children: [
                                           Padding(
-                                              padding: EdgeInsets.all(30.0),
+                                              padding:
+                                                  const EdgeInsets.all(30.0),
                                               child: Column(children: [
-                                                Text(
+                                                const Text(
                                                   'เเก้ไขข้อมูลส่วนตัว',
                                                   style: TextStyle(
                                                       fontWeight:
@@ -103,27 +114,31 @@ class _ProfileState extends State<Profile> {
                                                   onChanged: (value) =>
                                                       firstName = value.trim(),
                                                   decoration: InputDecoration(
-                                                    prefixIcon: Icon(
+                                                    prefixIcon: const Icon(
                                                       Icons.pets,
                                                       color: Colors.pink,
                                                     ),
                                                     labelText: 'ชื่อ :',
-                                                    labelStyle: TextStyle(
+                                                    labelStyle: const TextStyle(
                                                       color: Colors.pink,
                                                       fontSize: 15,
                                                     ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.pink),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.pink),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -137,27 +152,31 @@ class _ProfileState extends State<Profile> {
                                                   onChanged: (value) =>
                                                       lastName = value.trim(),
                                                   decoration: InputDecoration(
-                                                    prefixIcon: Icon(
+                                                    prefixIcon: const Icon(
                                                       Icons.pets,
                                                       color: Colors.pink,
                                                     ),
                                                     labelText: 'นามสกุล :',
-                                                    labelStyle: TextStyle(
+                                                    labelStyle: const TextStyle(
                                                       color: Colors.pink,
                                                       fontSize: 15,
                                                     ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.pink),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.pink),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -173,27 +192,31 @@ class _ProfileState extends State<Profile> {
                                                   onChanged: (value) =>
                                                       email = value.trim(),
                                                   decoration: InputDecoration(
-                                                    prefixIcon: Icon(
+                                                    prefixIcon: const Icon(
                                                       Icons.pets,
                                                       color: Colors.pink,
                                                     ),
                                                     labelText: 'E-mail :',
-                                                    labelStyle: TextStyle(
+                                                    labelStyle: const TextStyle(
                                                       color: Colors.pink,
                                                       fontSize: 15,
                                                     ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.pink),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.pink),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -211,17 +234,17 @@ class _ProfileState extends State<Profile> {
                                                     SizedBox(
                                                       width: 120,
                                                       child: ElevatedButton(
-                                                        child: const Text(
-                                                          'บันทึก',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
                                                         onPressed: () {},
                                                         style: ElevatedButton
                                                             .styleFrom(
                                                           primary:
                                                               Colors.green[500],
+                                                        ),
+                                                        child: const Text(
+                                                          'บันทึก',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -229,12 +252,6 @@ class _ProfileState extends State<Profile> {
                                                     SizedBox(
                                                       width: 120,
                                                       child: ElevatedButton(
-                                                        child: const Text(
-                                                          'ยกเลิก',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
                                                         onPressed: () {
                                                           navigator!
                                                               .pop(context);
@@ -243,6 +260,12 @@ class _ProfileState extends State<Profile> {
                                                             .styleFrom(
                                                           primary:
                                                               Colors.red[500],
+                                                        ),
+                                                        child: const Text(
+                                                          'ยกเลิก',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -287,7 +310,7 @@ class _ProfileState extends State<Profile> {
                                 const SizedBox(height: 25),
                                 Text(
                                   '$firstName  $lastName',
-                                  style: TextStyle(fontSize: 35),
+                                  style: const TextStyle(fontSize: 35),
                                 ),
                               ],
                             ),
@@ -298,9 +321,9 @@ class _ProfileState extends State<Profile> {
                     ),
                   )),
             ),
-            Divider(color: Colors.black),
+            const Divider(color: Colors.black),
             const SizedBox(height: 10.0),
-            Row(
+            const Row(
               children: [
                 Text(
                   'สัตว์เลี้ยงของคุณ',
@@ -311,38 +334,60 @@ class _ProfileState extends State<Profile> {
             ),
             const SizedBox(height: 10.0),
             SizedBox(
-              height: 170.0,
-              child: ListView.builder(
-                itemCount: Pet.length,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(50.0),
-                        child: Image.asset(
-                          'asset/images/logopet.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      title: Text('${Pet![index].name}  ${Pet![index].age}'),
-                      subtitle:
-                          Text('${Pet![index].species}  ${Pet![index].gender}'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.remove_circle),
-                            color: Colors.red,
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+                height: 170.0,
+                child: Obx(() {
+                  return !_petController.isLoading.value &&
+                          _petController.petData.value.data != null
+                      ? ListView.builder(
+                          itemCount: _petController.petData.value.data!.length,
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            var value = _petController.petData.value.data;
+                            return Card(
+                              child: ListTile(
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  child: value![index].petImage == null
+                                      ? Image.asset(
+                                          'asset/images/logopet.jpg',
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.network(
+                                          '${value[index].petImage}',
+                                          fit: BoxFit.cover,
+                                        ),
+                                ),
+                                title: Text(
+                                    '${value[index].name}  ${value[index].age}'),
+                                subtitle: Text(
+                                    '${value[index].species}  ${value[index].gender}'),
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      icon: const Icon(Icons.remove_circle),
+                                      color: Colors.red,
+                                      onPressed: () {
+                                        setState(() {
+                                          _petController.delPet(
+                                              value[index].petId as int);
+                                          _petController
+                                              .myPetList(userId as int);
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : _petController.petData.value.data != null
+                          ? Container()
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                })),
             SizedBox(
               height: 40,
               child: Card(
@@ -356,14 +401,159 @@ class _ProfileState extends State<Profile> {
                           return ListView(
                             children: [
                               Padding(
-                                  padding: EdgeInsets.all(30.0),
+                                  padding: const EdgeInsets.all(30.0),
                                   child: Column(children: [
-                                    Text(
+                                    const Text(
                                       'เพิ่มสัตว์เลี้ยง',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           height: 5,
                                           fontSize: 20),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Radio(
+                                                  value: 'Cat',
+                                                  groupValue: choosType,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      choosType = value!;
+                                                      _petController
+                                                          .setPetSpecies(
+                                                              value.toString());
+                                                      print(value);
+                                                    });
+                                                  }),
+                                              const Text(
+                                                'เเมว',
+                                                style: TextStyle(
+                                                    color: Colors.pink),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Radio(
+                                                  value: 'Dog',
+                                                  groupValue: choosType,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      choosType = value!;
+                                                      _petController
+                                                          .setPetSpecies(
+                                                              value.toString());
+                                                      print(value);
+                                                    });
+                                                  }),
+                                              const Text(
+                                                'สุนัข',
+                                                style: TextStyle(
+                                                    color: Colors.pink),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 15.0),
+                                    TextField(
+                                      onChanged: (value) =>
+                                          _petController.setBreed(value),
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(
+                                          Icons.pets,
+                                          color: Colors.pink,
+                                        ),
+                                        labelText: 'สายพันธุ์ :',
+                                        labelStyle: const TextStyle(
+                                          color: Colors.pink,
+                                          fontSize: 15,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.pink),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.pink),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        helperText:
+                                            'กรุณากรอกสายพันธุ์ของสัตว์เลี้ยง',
+                                      ),
+                                    ),
+                                    const SizedBox(height: 15.0),
+                                    TextField(
+                                      onChanged: (value) =>
+                                          _petController.setPetName(value),
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(
+                                          Icons.pets,
+                                          color: Colors.pink,
+                                        ),
+                                        labelText: 'ชื่อสัตว์เลี้ยง :',
+                                        labelStyle: const TextStyle(
+                                          color: Colors.pink,
+                                          fontSize: 15,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.pink),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.pink),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        helperText:
+                                            'กรุณากรอกชื่อสัตว์เลี้ยงของคุณ',
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 250.0,
+                                      child: TextField(
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value) => _petController
+                                            .setPetAge(int.parse(value)),
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.pets,
+                                            color: Colors.pink,
+                                          ),
+                                          labelText: 'อายุ :',
+                                          labelStyle: TextStyle(
+                                            color: Colors.pink,
+                                            fontSize: 15,
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.pink),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.pink),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          helperText:
+                                              'กรุณากรอกอายุสัตว์เลี้ยงของคุณ',
+                                        ),
+                                      ),
                                     ),
                                     Container(
                                       height: 70,
@@ -376,16 +566,19 @@ class _ProfileState extends State<Profile> {
                                               child: Row(
                                                 children: [
                                                   Radio(
-                                                      value: 'Cat',
-                                                      groupValue: choosType,
+                                                      value: 'Male',
+                                                      groupValue: itemGender,
                                                       onChanged: (value) {
                                                         setState(() {
-                                                          choosType = value;
+                                                          itemGender = value!;
+                                                          _petController
+                                                              .setPetGender(value
+                                                                  .toString());
                                                           print(value);
                                                         });
                                                       }),
                                                   Text(
-                                                    'เเมว',
+                                                    'Male',
                                                     style: TextStyle(
                                                         color: Colors.pink),
                                                   )
@@ -396,16 +589,19 @@ class _ProfileState extends State<Profile> {
                                               child: Row(
                                                 children: [
                                                   Radio(
-                                                      value: 'Dog',
-                                                      groupValue: choosType,
+                                                      value: 'Female',
+                                                      groupValue: itemGender,
                                                       onChanged: (value) {
                                                         setState(() {
-                                                          choosType = value;
+                                                          itemGender = value!;
+                                                          _petController
+                                                              .setPetGender(value
+                                                                  .toString());
                                                           print(value);
                                                         });
                                                       }),
                                                   Text(
-                                                    'สุนัข',
+                                                    'Female',
                                                     style: TextStyle(
                                                         color: Colors.pink),
                                                   )
@@ -416,129 +612,17 @@ class _ProfileState extends State<Profile> {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(height: 15.0),
-                                    TextField(
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.pets,
-                                          color: Colors.pink,
-                                        ),
-                                        labelText: 'สายพันธุ์ :',
-                                        labelStyle: TextStyle(
-                                          color: Colors.pink,
-                                          fontSize: 15,
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.pink),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.pink),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        helperText:
-                                            'กรุณากรอกสายพันธุ์ของสัตว์เลี้ยง',
-                                      ),
-                                    ),
-                                    const SizedBox(height: 15.0),
-                                    TextField(
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.pets,
-                                          color: Colors.pink,
-                                        ),
-                                        labelText: 'ชื่อสัตว์เลี้ยง :',
-                                        labelStyle: TextStyle(
-                                          color: Colors.pink,
-                                          fontSize: 15,
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.pink),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.pink),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        helperText:
-                                            'กรุณากรอกชื่อสัตว์เลี้ยงของคุณ',
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'อายุ  ',
-                                          style: TextStyle(color: Colors.pink),
-                                        ),
-                                        DropdownButton(
-                                          style: TextStyle(color: Colors.pink),
-                                          value: itemAge,
-                                          items: ageList
-                                              .map((itemAge) =>
-                                                  DropdownMenuItem(
-                                                      value: itemAge,
-                                                      child: Text(itemAge)))
-                                              .toList(),
-                                          onChanged: ((value) {
-                                            setState(
-                                              () => itemAge = value.toString(),
-                                            );
-                                            print(itemAge);
-                                          }),
-                                        ),
-                                        Text(
-                                          'ปี',
-                                          style: TextStyle(color: Colors.pink),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'เพศ',
-                                          style: TextStyle(color: Colors.pink),
-                                        ),
-                                        DropdownButton(
-                                          style: TextStyle(color: Colors.pink),
-                                          value: itemGender,
-                                          items: genderList
-                                              .map((itemGender) =>
-                                                  DropdownMenuItem(
-                                                      value: itemGender,
-                                                      child: Text(itemGender)))
-                                              .toList(),
-                                          onChanged: ((value) {
-                                            setState(
-                                              () =>
-                                                  itemGender = value.toString(),
-                                            );
-                                            print(itemGender);
-                                          }),
-                                        ),
-                                      ],
-                                    ),
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 150.0,
                                           child: Image.asset(
                                               'asset/images/logopet.jpg'),
                                         ),
                                         IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
+                                            onPressed:
+                                                _petController.selectImage,
+                                            icon: const Icon(
                                                 Icons.add_photo_alternate)),
                                       ],
                                     ),
@@ -550,14 +634,21 @@ class _ProfileState extends State<Profile> {
                                         SizedBox(
                                           width: 120,
                                           child: ElevatedButton(
+                                            onPressed: () {
+                                              print("CLICK");
+                                              _petController
+                                                  .createPet(userId as int);
+                                              _petController
+                                                  .myPetList(userId as int);
+                                              navigator!.pop(context);
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Colors.green[500],
+                                            ),
                                             child: const Text(
                                               'บันทึก',
                                               style: TextStyle(
                                                   color: Colors.white),
-                                            ),
-                                            onPressed: () {},
-                                            style: ElevatedButton.styleFrom(
-                                              primary: Colors.green[500],
                                             ),
                                           ),
                                         ),
@@ -565,16 +656,16 @@ class _ProfileState extends State<Profile> {
                                         SizedBox(
                                           width: 120,
                                           child: ElevatedButton(
-                                            child: const Text(
-                                              'ยกเลิก',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
                                             onPressed: () {
                                               navigator!.pop(context);
                                             },
                                             style: ElevatedButton.styleFrom(
                                               primary: Colors.red[500],
+                                            ),
+                                            child: const Text(
+                                              'ยกเลิก',
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                             ),
                                           ),
                                         ),
@@ -585,14 +676,14 @@ class _ProfileState extends State<Profile> {
                           );
                         });
                   },
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const SizedBox(width: 5.0),
+                      SizedBox(width: 5.0),
                       Icon(
                         Icons.add_outlined,
                       ),
-                      const SizedBox(width: 76.0),
+                      SizedBox(width: 76.0),
                       Text(
                         'เพิ่มสัตว์เลี้ยงของคุณ',
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -611,14 +702,14 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     print("tapped");
                   },
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const SizedBox(width: 5.0),
+                      SizedBox(width: 5.0),
                       Icon(
                         Icons.exit_to_app,
                       ),
-                      const SizedBox(width: 99.0),
+                      SizedBox(width: 99.0),
                       Text(
                         'ออกจากระบบ',
                         style: TextStyle(fontWeight: FontWeight.bold),

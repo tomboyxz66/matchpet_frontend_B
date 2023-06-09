@@ -48,6 +48,7 @@ dependencies:
   search_page: ^2.3.0
   onesignal_flutter: ^3.5.1
   image_picker: ^0.8.7+5
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:

@@ -73,8 +73,8 @@ class _MyPetScreenState extends State<MyPetScreen> {
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(50.0),
-                                          child: Image.asset(
-                                            'asset/images/logopet.jpg',
+                                          child: Image.network(
+                                            '${value![index].petImage}',
                                             fit: BoxFit.cover,
                                           ),
                                         ),

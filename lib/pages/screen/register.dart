@@ -15,8 +15,6 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   // @override
   var choosType;
-  final ImagePicker _imagePicker = ImagePicker();
-  final RegisterController _controllerregis = Get.put(RegisterController());
 
   var itemGender;
 
@@ -27,31 +25,31 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: (MyStyle().fontColor),
-        title: Text('Register'),
+        title: const Text('Register'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(30.0),
         children: [
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => _controllerregis.setFirsName(value),
+              onChanged: (value) => _registerController.setFirstName(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'ชื่อ :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอกชื่อของคุณ',
@@ -59,26 +57,26 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => _controllerregis.setLastName(value),
+              onChanged: (value) => _registerController.setLastName(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'นามสกุล :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอกนามสกุลของคุณ',
@@ -86,26 +84,26 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => _controllerregis.setUsername(value),
+              onChanged: (value) => _registerController.setUsername(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'Username :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอก UserName ของคุณ',
@@ -113,27 +111,27 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
               obscureText: true,
-              onChanged: (value) => _controllerregis.setPassword(value),
+              onChanged: (value) => _registerController.setPassword(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'Password :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอก Password ของคุณ',
@@ -141,26 +139,26 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => _controllerregis.setLocation(value),
+              onChanged: (value) => _registerController.setLocation(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'ที่อยู่ :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอกที่อยู่ของคุณ',
@@ -168,27 +166,27 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
               keyboardType: TextInputType.emailAddress,
-              onChanged: (value) => _controllerregis.setEmail(value),
+              onChanged: (value) => _registerController.setEmail(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'E-mail :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอก Email ของคุณ',
@@ -196,7 +194,7 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             height: 70,
             child: Card(
               child: Row(
@@ -211,12 +209,12 @@ class _RegisterState extends State<Register> {
                             onChanged: (value) {
                               setState(() {
                                 choosType = value!;
-                                _controllerregis
+                                _registerController
                                     .setPetSpecies(value.toString());
                                 print(value);
                               });
                             }),
-                        Text(
+                        const Text(
                           'เเมว',
                           style: TextStyle(color: Colors.pink),
                         )
@@ -232,12 +230,12 @@ class _RegisterState extends State<Register> {
                             onChanged: (value) {
                               setState(() {
                                 choosType = value!;
-                                _controllerregis
+                                _registerController
                                     .setPetSpecies(value.toString());
                                 print(value);
                               });
                             }),
-                        Text(
+                        const Text(
                           'สุนัข',
                           style: TextStyle(color: Colors.pink),
                         )
@@ -249,26 +247,26 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => _controllerregis.setBreed(value),
+              onChanged: (value) => _registerController.setBreed(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'สายพันธุ์ :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอกสายพันธุ์ของสัตว์เลี้ยง',
@@ -276,54 +274,54 @@ class _RegisterState extends State<Register> {
             ),
           ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => _controllerregis.setPetName(value),
+              onChanged: (value) => _registerController.setPetName(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'ชื่อสัตว์เลี้ยง :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอกชื่อสัตว์เลี้ยงของคุณ',
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: 250.0,
             child: TextField(
               keyboardType: TextInputType.number,
               onChanged: (value) =>
-                  _controllerregis.setPetAge(int.parse(value)),
+                  _registerController.setPetAge(int.parse(value)),
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
                 labelText: 'อายุ :',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: const BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 helperText: 'กรุณากรอกอายุสัตว์เลี้ยงของคุณ',
@@ -347,7 +345,7 @@ class _RegisterState extends State<Register> {
           //           .toList(),
           //       onChanged: ((value) {
           //         setState(
-          //           _controllerregis.setPetAge(int.parse(itemAge)),
+          //           _registerController.setPetAge(int.parse(itemAge)),
           //         );
           //         print(value);
           //       }),
@@ -359,7 +357,7 @@ class _RegisterState extends State<Register> {
           //   ],
           // ),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             height: 70,
             child: Card(
               child: Row(
@@ -374,11 +372,12 @@ class _RegisterState extends State<Register> {
                             onChanged: (value) {
                               setState(() {
                                 itemGender = value!;
-                                _controllerregis.setPetGender(value.toString());
+                                _registerController
+                                    .setPetGender(value.toString());
                                 print(value);
                               });
                             }),
-                        Text(
+                        const Text(
                           'Male',
                           style: TextStyle(color: Colors.pink),
                         )
@@ -394,11 +393,12 @@ class _RegisterState extends State<Register> {
                             onChanged: (value) {
                               setState(() {
                                 itemGender = value!;
-                                _controllerregis.setPetGender(value.toString());
+                                _registerController
+                                    .setPetGender(value.toString());
                                 print(value);
                               });
                             }),
-                        Text(
+                        const Text(
                           'Female',
                           style: TextStyle(color: Colors.pink),
                         )
@@ -424,7 +424,7 @@ class _RegisterState extends State<Register> {
           //               value: itemGender, child: Text(itemGender)))
           //           .toList(),
           //       onChanged: ((value) {
-          //         // setState(_controllerregis.setPetGender(value!));
+          //         // setState(_registerController.setPetGender(value!));
           //         print(itemGender);
           //       }),
           //     ),
@@ -435,31 +435,31 @@ class _RegisterState extends State<Register> {
             children: [
               IconButton(
                   onPressed: _registerController.selectImage,
-                  icon: Icon(Icons.add_photo_alternate)),
-              Container(
-                width: 150.0,
-                child: Obx(
-                  () => _registerController.imagePath.value.isEmpty
-                      ? Image.asset('asset/images/logopet.jpg')
-                      : Image.file(
-                          File(_registerController.imagePath.value),
-                          height: 150,
-                        ),
-                ),
-              ),
+                  icon: const Icon(Icons.add_photo_alternate)),
+              // Container(
+              //   width: 150.0,
+              //   child: Obx(
+              //     () => _registerController.imagePath.value.isEmpty
+              //         ? Image.asset('asset/images/logopet.jpg')
+              //         : Image.file(
+              //             File(_registerController.imagePath.value),
+              //             height: 150,
+              //           ),
+              //   ),
+              // ),
             ],
           ),
           const SizedBox(height: 20.0),
           const SizedBox(height: 20.0),
-          Container(
+          SizedBox(
             width: 250.0,
             child: ElevatedButton(
-              onPressed: () => _controllerregis.registerUser(),
-              child: Text('สมัครสมาชิก'),
+              onPressed: () => _registerController.registerUser(),
+              child: const Text('สมัครสมาชิก'),
               style: ElevatedButton.styleFrom(
                 primary: const Color.fromARGB(255, 241, 190, 207),
                 onPrimary: Colors.pink[900],
-                side: BorderSide(color: Colors.red, width: 0.7),
+                side: const BorderSide(color: Colors.red, width: 0.7),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),

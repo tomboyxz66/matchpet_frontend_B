@@ -49,10 +49,21 @@ class _MatchingScreenState extends State<MatchingScreen> {
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset(
-                                'asset/images/logopet.jpg',
-                                fit: BoxFit.cover,
-                              ),
+                              child: _matchingController
+                                          .petListData
+                                          .value
+                                          .data![_matchingController
+                                              .currentIndex.value]
+                                          .petImage ==
+                                      null
+                                  ? Image.asset(
+                                      'asset/images/logopet.jpg',
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.network(
+                                      "${_matchingController.petListData.value.data![_matchingController.currentIndex.value].petImage}",
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                           ),
                         ),

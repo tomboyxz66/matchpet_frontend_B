@@ -2,10 +2,9 @@ import 'package:app/constant/constant.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:convert';
 
 class RegisterController extends GetxController {
-  final ImagePicker _imagePicker = ImagePicker();
-
   final RxString username = ''.obs;
   final RxString password = ''.obs;
   final RxString email = ''.obs;
@@ -17,6 +16,10 @@ class RegisterController extends GetxController {
   final RxString petBreed = ''.obs;
   final RxString petGender = ''.obs;
   final RxInt petAge = 0.obs;
+  RxString imagePath = RxString('');
+  RxString imageName = RxString('');
+  RxString base64Image = RxString('');
+  RxString fileName = RxString('');
 
   setUsername(String value) {
     username.value = value;
@@ -30,7 +33,7 @@ class RegisterController extends GetxController {
     email.value = value;
   }
 
-  setFirsName(String value) {
+  setFirstName(String value) {
     firstName.value = value;
   }
 
@@ -62,34 +65,16 @@ class RegisterController extends GetxController {
     petAge.value = value;
   }
 
-  RxString imagePath = RxString('');
+  selectImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
 
-  void selectImage() async {
-    final pickedFile = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
-    );
-
-    if (pickedFile != null) {
-      imagePath.value = pickedFile.path;
-      update();
-    }
+    base64Image.value = base64Encode(await pickedImage.readAsBytes());
+    fileName.value = pickedImage.path.split('/').last;
   }
 
   void registerUser() async {
-    if (username.value.isEmpty ||
-        email.value.isEmpty ||
-        firstName.value.isEmpty ||
-        lastName.value.isEmpty ||
-        password.value.isEmpty ||
-        location.value.isEmpty ||
-        petName.value.isEmpty ||
-        petSpecies.value.isEmpty ||
-        petGender.value.isEmpty ||
-        petBreed.value.isEmpty ||
-        imagePath.value.isEmpty) {
-      Get.snackbar('Error', 'Please fill in all fields');
-      return;
-    }
     try {
       final response = await dio.Dio().post(
         '${MyDomain().api}/api/register',
@@ -105,13 +90,14 @@ class RegisterController extends GetxController {
           'breed': petBreed.value,
           'gender': petGender.value,
           'age': petAge.value,
-          'image': await dio.MultipartFile.fromFile(imagePath.value),
+          'image': base64Image.value,
+          'filename': fileName.value
         },
       );
       if (response.statusCode == 200) {
         print('Login Successful: ${response.data}');
 
-        Get.toNamed('/login');
+        Get.toNamed('/');
       }
       // Handle the response here, e.g., save token, navigate to next screen, etc.
     } catch (error) {
