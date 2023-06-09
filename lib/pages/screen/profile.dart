@@ -168,42 +168,6 @@ class _ProfileState extends State<Profile> {
                                                 ),
                                                 const SizedBox(height: 15.0),
                                                 TextField(
-                                                  keyboardType:
-                                                      TextInputType.phone,
-                                                  onChanged: (value) =>
-                                                      tel = value.trim(),
-                                                  decoration: InputDecoration(
-                                                    prefixIcon: Icon(
-                                                      Icons.pets,
-                                                      color: Colors.pink,
-                                                    ),
-                                                    labelText: 'เบอร์โทร :',
-                                                    labelStyle: TextStyle(
-                                                      color: Colors.pink,
-                                                      fontSize: 15,
-                                                    ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.pink),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    helperText:
-                                                        'กรุณากรอกเบอร์โทรศัพท์ของคุณ',
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 15.0),
-                                                TextField(
                                                   keyboardType: TextInputType
                                                       .emailAddress,
                                                   onChanged: (value) =>

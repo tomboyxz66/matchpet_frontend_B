@@ -13,77 +13,13 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  String username = "admins";
-  String email = "admins88@example.com";
-  String password = "admin";
-  String name = "Tom5";
-  String species = "Cat";
-  String gender = "Female";
-  int age = 5;
   // @override
-  String? choosType, lastName, user, passWord, tel;
+  var choosType;
   final ImagePicker _imagePicker = ImagePicker();
+  final RegisterController _controllerregis = Get.put(RegisterController());
 
-  String itemDog = 'Pomeranian';
-  List<String> dogList = [
-    'Pomeranian',
-    'Chihuahua',
-    'Siberian Husky',
-    'Alaskan Malamute',
-    'Shiba Inu',
-    'Welsh Corgi',
-    'American Bully',
-    'Yorkshire Terrier',
-    'Schnauzer',
-    'Dachshund',
-    'French bulldog',
-  ];
+  var itemGender;
 
-  String itemCat = 'Silver Blue';
-  List<String> catList = [
-    'Silver Blue',
-    'Khao Manee',
-    'Siamese',
-    'Scottish Fold',
-    'American Shorthair',
-    'British Shorthair',
-    'Exotic Shorthair',
-    'Persian',
-    'Ragdoll',
-    'Sphinx',
-    'Bengal',
-  ];
-
-  String itemAge = '<1';
-  List<String> ageList = [
-    '<1',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-    '20',
-  ];
-
-  String itemGender = 'Male';
-  List<String> genderList = [
-    'Male',
-    'Female',
-  ];
   final RegisterController _registerController = Get.put(RegisterController());
 
   @override
@@ -99,7 +35,7 @@ class _RegisterState extends State<Register> {
           Container(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => name = value.trim(),
+              onChanged: (value) => _controllerregis.setFirsName(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -126,7 +62,7 @@ class _RegisterState extends State<Register> {
           Container(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => lastName = value.trim(),
+              onChanged: (value) => _controllerregis.setLastName(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -153,7 +89,7 @@ class _RegisterState extends State<Register> {
           Container(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => user = value.trim(),
+              onChanged: (value) => _controllerregis.setUsername(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -181,7 +117,7 @@ class _RegisterState extends State<Register> {
             width: 250.0,
             child: TextField(
               obscureText: true,
-              onChanged: (value) => passWord = value.trim(),
+              onChanged: (value) => _controllerregis.setPassword(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -208,14 +144,13 @@ class _RegisterState extends State<Register> {
           Container(
             width: 250.0,
             child: TextField(
-              keyboardType: TextInputType.phone,
-              onChanged: (value) => tel = value.trim(),
+              onChanged: (value) => _controllerregis.setLocation(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
                   color: Colors.pink,
                 ),
-                labelText: 'เบอร์โทร :',
+                labelText: 'ที่อยู่ :',
                 labelStyle: TextStyle(
                   color: Colors.pink,
                   fontSize: 15,
@@ -228,7 +163,7 @@ class _RegisterState extends State<Register> {
                   borderSide: BorderSide(color: Colors.pink),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                helperText: 'กรุณากรอกเบอร์โทรศัพท์ของคุณ',
+                helperText: 'กรุณากรอกที่อยู่ของคุณ',
               ),
             ),
           ),
@@ -237,7 +172,7 @@ class _RegisterState extends State<Register> {
             width: 250.0,
             child: TextField(
               keyboardType: TextInputType.emailAddress,
-              onChanged: (value) => email = value.trim(),
+              onChanged: (value) => _controllerregis.setEmail(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -275,7 +210,9 @@ class _RegisterState extends State<Register> {
                             groupValue: choosType,
                             onChanged: (value) {
                               setState(() {
-                                choosType = value;
+                                choosType = value!;
+                                _controllerregis
+                                    .setPetSpecies(value.toString());
                                 print(value);
                               });
                             }),
@@ -294,7 +231,9 @@ class _RegisterState extends State<Register> {
                             groupValue: choosType,
                             onChanged: (value) {
                               setState(() {
-                                choosType = value;
+                                choosType = value!;
+                                _controllerregis
+                                    .setPetSpecies(value.toString());
                                 print(value);
                               });
                             }),
@@ -313,8 +252,7 @@ class _RegisterState extends State<Register> {
           Container(
             width: 250.0,
             child: TextField(
-              keyboardType: TextInputType.emailAddress,
-              onChanged: (value) => email = value.trim(),
+              onChanged: (value) => _controllerregis.setBreed(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -341,7 +279,7 @@ class _RegisterState extends State<Register> {
           Container(
             width: 250.0,
             child: TextField(
-              onChanged: (value) => user = value.trim(),
+              onChanged: (value) => _controllerregis.setPetName(value),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.pets,
@@ -364,58 +302,134 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
-          const SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'อายุ  ',
-                style: TextStyle(color: Colors.pink),
+          Container(
+            width: 250.0,
+            child: TextField(
+              keyboardType: TextInputType.number,
+              onChanged: (value) =>
+                  _controllerregis.setPetAge(int.parse(value)),
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.pets,
+                  color: Colors.pink,
+                ),
+                labelText: 'อายุ :',
+                labelStyle: TextStyle(
+                  color: Colors.pink,
+                  fontSize: 15,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                helperText: 'กรุณากรอกอายุสัตว์เลี้ยงของคุณ',
               ),
-              DropdownButton(
-                style: TextStyle(color: Colors.pink),
-                value: itemAge,
-                items: ageList
-                    .map((itemAge) =>
-                        DropdownMenuItem(value: itemAge, child: Text(itemAge)))
-                    .toList(),
-                onChanged: ((value) {
-                  setState(
-                    () => itemAge = value.toString(),
-                  );
-                  print(itemAge);
-                }),
-              ),
-              Text(
-                'ปี',
-                style: TextStyle(color: Colors.pink),
-              ),
-            ],
+            ),
           ),
           const SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'เพศ',
-                style: TextStyle(color: Colors.pink),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       'อายุ  ',
+          //       style: TextStyle(color: Colors.pink),
+          //     ),
+          //     DropdownButton(
+          //       style: TextStyle(color: Colors.pink),
+          //       value: itemAge,
+          //       items: ageList
+          //           .map((itemAge) =>
+          //               DropdownMenuItem(value: itemAge, child: Text(itemAge)))
+          //           .toList(),
+          //       onChanged: ((value) {
+          //         setState(
+          //           _controllerregis.setPetAge(int.parse(itemAge)),
+          //         );
+          //         print(value);
+          //       }),
+          //     ),
+          //     Text(
+          //       'ปี',
+          //       style: TextStyle(color: Colors.pink),
+          //     ),
+          //   ],
+          // ),
+          const SizedBox(height: 20.0),
+          Container(
+            height: 70,
+            child: Card(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Radio(
+                            value: 'Male',
+                            groupValue: itemGender,
+                            onChanged: (value) {
+                              setState(() {
+                                itemGender = value!;
+                                _controllerregis.setPetGender(value.toString());
+                                print(value);
+                              });
+                            }),
+                        Text(
+                          'Male',
+                          style: TextStyle(color: Colors.pink),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Row(
+                      children: [
+                        Radio(
+                            value: 'Female',
+                            groupValue: itemGender,
+                            onChanged: (value) {
+                              setState(() {
+                                itemGender = value!;
+                                _controllerregis.setPetGender(value.toString());
+                                print(value);
+                              });
+                            }),
+                        Text(
+                          'Female',
+                          style: TextStyle(color: Colors.pink),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              DropdownButton(
-                style: TextStyle(color: Colors.pink),
-                value: itemGender,
-                items: genderList
-                    .map((itemGender) => DropdownMenuItem(
-                        value: itemGender, child: Text(itemGender)))
-                    .toList(),
-                onChanged: ((value) {
-                  setState(
-                    () => itemGender = value.toString(),
-                  );
-                  print(itemGender);
-                }),
-              ),
-            ],
+            ),
           ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       'เพศ',
+          //       style: TextStyle(color: Colors.pink),
+          //     ),
+          //     DropdownButton(yim
+          //       style: TextStyle(color: Colors.pink),
+          //       value: itemGender,
+          //       items: genderList
+          //           .map((itemGender) => DropdownMenuItem(
+          //               value: itemGender, child: Text(itemGender)))
+          //           .toList(),
+          //       onChanged: ((value) {
+          //         // setState(_controllerregis.setPetGender(value!));
+          //         print(itemGender);
+          //       }),
+          //     ),
+          //   ],
+          // ),
           const SizedBox(height: 20.0),
           Column(
             children: [
@@ -436,34 +450,11 @@ class _RegisterState extends State<Register> {
             ],
           ),
           const SizedBox(height: 20.0),
-          Container(
-            width: 250.0,
-            child: TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.pets,
-                  color: Colors.pink,
-                ),
-                labelStyle: TextStyle(color: Colors.pink),
-                labelText: 'ข้อมูลเพิ่มเติม :',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              maxLines: 10,
-            ),
-          ),
-          const SizedBox(height: 20.0),
           const SizedBox(height: 20.0),
           Container(
             width: 250.0,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => _controllerregis.registerUser(),
               child: Text('สมัครสมาชิก'),
               style: ElevatedButton.styleFrom(
                 primary: const Color.fromARGB(255, 241, 190, 207),

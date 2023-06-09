@@ -1,9 +1,7 @@
 import 'package:app/constant/constant.dart';
 import 'package:dio/dio.dart' as dio;
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:get_storage/get_storage.dart';
 
 class RegisterController extends GetxController {
   final ImagePicker _imagePicker = ImagePicker();
@@ -106,7 +104,7 @@ class RegisterController extends GetxController {
           'species': petSpecies.value,
           'breed': petBreed.value,
           'gender': petGender.value,
-          'age': petAge,
+          'age': petAge.value,
           'image': await dio.MultipartFile.fromFile(imagePath.value),
         },
       );

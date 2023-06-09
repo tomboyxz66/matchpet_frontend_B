@@ -45,7 +45,7 @@ class _ChatScreensState extends State<ChatScreens> {
                             Navigator.pop(context);
                           },
                           child: Container(
-                            color: Colors.grey,
+                            color: const Color.fromARGB(255, 214, 40, 40),
                             height: 40,
                             width: MediaQuery.of(context).size.width,
                             child: const Row(
